@@ -64,8 +64,8 @@ js_content = f"""document.addEventListener('DOMContentLoaded', () => {{
                     // Initialize Scanner
                     html5QrcodeScanner = new Html5QrcodeScanner(
                         "reader", 
-                        {{ fps: 10, qrbox: {{width: 250, height: 250}} }},
-                        /* verbose= */ false
+                        {{ fps: 10, qrbox: {{width: 300, height: 300}} }},
+                        /* verbose= */ true
                     );
                     
                     html5QrcodeScanner.render((decodedText, decodedResult) => {{
