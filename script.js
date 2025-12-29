@@ -148,7 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
     "24A81A4411": "B KISHORE",
     "24A81A4443": "SAGAR",
     "24A81A4410": "MURALI BITRAGUNTA",
-    "24A81A4419": "JUTESH DUGGIRALA"
+    "24A81A4419": "JUTESH DUGGIRALA",
+    "23A81A4361": "JITENDRA SRI TALABATTULA",
+    "23A81A6158": "SHEIK RAMEEZ RAZA",
+    "23A81A43B7": "SHANMUKHA MUPPANA"
 };
 
     console.log(`✓ Loaded ${Object.keys(studentsData).length} students from embedded data`);
