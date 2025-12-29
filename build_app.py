@@ -4,7 +4,7 @@ import base64
 import os
 
 # Define paths
-base_dir = r"d:\HACKELERATE"
+base_dir = os.path.dirname(os.path.abspath(__file__))
 json_path = os.path.join(base_dir, "students.json")
 img_path = os.path.join(base_dir, "images", "Certificate.png")
 js_path = os.path.join(base_dir, "script.js")
@@ -143,7 +143,7 @@ js_content = f"""document.addEventListener('DOMContentLoaded', () => {{
                         }}
                         const url = URL.createObjectURL(blob);
                         downloadLink.href = url;
-                        downloadLink.download = `HACKELERATE_Certificate_${{name.replace(/\\s+/g, '_')}}.png`;
+                        downloadLink.download = `DEPLOYX_Certificate_${{name.replace(/\\s+/g, '_')}}.png`;
                         
                         // Clean up object URL after click
                         downloadLink.onclick = () => {{

@@ -1,4 +1,4 @@
-# HACKELERATE Hackathon Certificate Portal
+# DEPLOYX Certificate Portal
 
 ## How to Run
 This application is designed to run entirely locally in your browser.
