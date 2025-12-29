@@ -170,55 +170,54 @@ document.addEventListener('DOMContentLoaded', () => {
         const readerDiv = document.getElementById('reader');
         let html5QrcodeScanner = null;
 
-        if (btnScanQr) {
-            btnScanQr.addEventListener('click', () => {
-                if (readerDiv.style.display === 'none') {
-                    readerDiv.style.display = 'block';
-                    btnScanQr.textContent = 'Stop Scanning';
-                    
-                    // Initialize Scanner
-                    html5QrcodeScanner = new Html5QrcodeScanner(
-                        "reader", 
-                        { fps: 10, qrbox: {width: 300, height: 300} },
-                        /* verbose= */ true
-                    );
-                    
-                    html5QrcodeScanner.render((decodedText, decodedResult) => {
-                        // Success callback
-                        console.log(`Scan result: ${decodedText}`, decodedResult);
-                        
-                        // Stop scanning
-                        html5QrcodeScanner.clear().then(_ => {
+        btnScanQr.addEventListener('click', () => {
+
+            if (readerDiv.style.display === 'none') {
+                readerDiv.style.display = 'block';
+                btnScanQr.textContent = 'Stop Scanning';
+
+                html5QrcodeScanner = new Html5QrcodeScanner(
+                    "reader",
+                    {
+                        fps: 10,
+                        qrbox: { width: 250, height: 250 }
+                    },
+                    false
+                );
+
+                html5QrcodeScanner.render(
+                    (decodedText, decodedResult) => {
+                        console.log("QR Scanned:", decodedText);
+
+                        // Stop scanner after success
+                        html5QrcodeScanner.clear().then(() => {
                             readerDiv.style.display = 'none';
                             btnScanQr.textContent = 'Scan QR Code';
                             html5QrcodeScanner = null;
-                        }).catch(error => {
-                            console.error("Failed to clear html5QrcodeScanner. ", error);
                         });
 
-                        // Set decoded text to input and submit
-                        rollNoInput.value = decodedText;
-                        // Trigger submit
+                        // Put QR data into input field
+                        rollNoInput.value = decodedText.toUpperCase().trim();
+
+                        // Auto-submit form
                         form.dispatchEvent(new Event('submit'));
-                        
-                    }, (errorMessage) => {
-                        // partial error callback, ignore loops
-                    });
-                    
-                } else {
-                    // Stop Scanning manually
-                    if (html5QrcodeScanner) {
-                        html5QrcodeScanner.clear().then(_ => {
-                            readerDiv.style.display = 'none';
-                            btnScanQr.textContent = 'Scan QR Code';
-                            html5QrcodeScanner = null;
-                        }).catch(error => {
-                            console.error("Failed to clear html5QrcodeScanner. ", error);
-                        });
+                    },
+                    (errorMessage) => {
+                        // Ignore scan errors (continuous scanning)
                     }
+                );
+
+            } else {
+                // Manual stop
+                if (html5QrcodeScanner) {
+                    html5QrcodeScanner.clear().then(() => {
+                        readerDiv.style.display = 'none';
+                        btnScanQr.textContent = 'Scan QR Code';
+                        html5QrcodeScanner = null;
+                    });
                 }
-            });
-        }
+            }
+        });
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
