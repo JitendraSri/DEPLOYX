@@ -151,7 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
     "24A81A4419": "JUTESH DUGGIRALA",
     "23A81A4361": "JITENDRA SRI TALABATTULA",
     "23A81A6158": "SHEIK RAMEEZ RAZA",
-    "23A81A43B7": "SHANMUKHA MUPPANA"
+    "23A81A43B7": "SHANMUKHA MUPPANA",
+    "25A85A4305": "Jasintha Gubbala",
+    "24A81A4328": "Kesavarapu Aishwarya"
 };
 
     console.log(`✓ Loaded ${Object.keys(studentsData).length} students from embedded data`);
